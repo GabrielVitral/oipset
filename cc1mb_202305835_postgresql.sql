@@ -14,7 +14,12 @@ createrole
 encrypted password '1234';
 
 CREATE DATABASE uvv
-OWNER gabriel;
+OWNER gabriel
+       TEMPLATE template0
+       ENCODING 'UTF8'
+       LC_COLLATE 'pt_BR.UTF-8'
+       LC_CTYPE 'pt_BR.UTF-8'
+       ALLOW CONNECTIONS true;
 
 
 
