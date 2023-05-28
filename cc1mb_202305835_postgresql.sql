@@ -166,7 +166,7 @@ COMMENT ON COLUMN pedidos_itens.envio_id IS 'id do envio';
 -- Adicionar a constraint na coluna status da tabela pedidos
 ALTER TABLE lojas.pedidos
 ADD CONSTRAINT status_do_pedido
-CHECK (status IN ('Pendente', 'Em processamento', 'Concluído'));
+CHECK (status IN ('CANCELADO', 'COMPLETO', 'ABERTO', 'PAGO', 'REEMBOLSADO', 'ENVIADO'));
 
 -- Adicionar a constraint na tabela lojas
 ALTER TABLE lojas.lojas
@@ -181,7 +181,7 @@ CHECK (preco_unitario>0);
 -- Adicionar a constraint na coluna status da tabela envios
 ALTER TABLE lojas.envios
 ADD CONSTRAINT status_do_envio
-CHECK (status IN ('Envio pendente', 'Entrega em andamento', 'Entrega concluída'));
+CHECK (status IN ('CRIADO', 'ENVIADO', 'TRANSITO', 'ENTREGUE'));
 
 
 ALTER TABLE lojas.pedidos_itens ADD CONSTRAINT produtos_pedidos_itens_fk
