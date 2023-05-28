@@ -9,4 +9,4 @@
 ### Professor: Abrantes Araujo Silva Filho
 ### Instituição de ensino: UNIVERSIDADE DE VILA VELHA (UVV)
 ---
-O objetivo desse trabalho é implementar o projeto lógico "Lojas UVV", que foi usado como forma de avaliação dos alunos do primeiro período de ciência da computação, correspondendo a 45% da nota do primeiro bimestre. O projeto foi constituído de tarefas realizadas no SQL power architect e no postgres SQL
+O objetivo desse trabalho é implementar o projeto lógico "Lojas UVV", que foi usado como forma de avaliação dos alunos do primeiro período de ciência da computação, correspondendo a 45% da nota do primeiro bimestre. O projeto foi constituído de tarefas realizadas no SQL power architect e no postgres SQL.
