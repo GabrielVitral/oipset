@@ -54,6 +54,7 @@ CREATE TABLE lojas.produtos (
 
 -- adicionando comentários nas colunas das tabelas
 );
+COMMENT ON TABLE lojas.produtos IS 'Tabela com dados dos produtos'
 COMMENT ON COLUMN produtos.produtoid IS 'número de identificação do pedido';
 COMMENT ON COLUMN produtos.nome IS 'nome do produto';
 COMMENT ON COLUMN produtos.preco_unitario IS 'preço unitário do produto';
@@ -81,6 +82,7 @@ CREATE TABLE lojas.lojas (
 
 -- adicionando comentários nas colunas da tabela
 );
+COMMENT ON TABLE lojas.lojas IS 'Tabela com dados sobre as lojas'
 COMMENT ON COLUMN lojas.lojas_id IS 'loja';
 COMMENT ON COLUMN lojas.nome IS 'nome da loja';
 COMMENT ON COLUMN lojas.endereco_web IS 'link do site';
@@ -103,6 +105,7 @@ CREATE TABLE lojas.estoques (
 
 -- adicionando comentários nas colunas da tabela
 );
+COMMENT ON TABLE lojas.estoques IS 'Tabela com dados sobre estoques'
 COMMENT ON COLUMN estoques.estoque_id IS 'identificação do produto no estoque';
 COMMENT ON COLUMN estoques.produto_id IS 'número de identificação do produto';
 COMMENT ON COLUMN estoques.loja_id IS 'loja';
@@ -120,6 +123,7 @@ CREATE TABLE lojas.clientes (
 
 -- adicionando comentários nas colunas da tabela
 );
+COMMENT ON TABLE lojas.clientes IS 'Tabela com dados dos clientes'
 COMMENT ON COLUMN clientes.cliente_id IS 'Número de identificação do cliente';
 COMMENT ON COLUMN clientes.email IS 'email do cliente';
 COMMENT ON COLUMN clientes.nome IS 'nome do cliente';
@@ -139,6 +143,7 @@ CREATE TABLE lojas.envios (
 
 -- adicionando comentários nas colunas da tabela
 );
+COMMENT ON TABLE lojas.envios IS 'Tabela com dados dos envios'
 COMMENT ON COLUMN envios.envio_id IS 'número do pedido enviado';
 COMMENT ON COLUMN envios.cliente_id IS 'cliente que recebeu o pedido';
 COMMENT ON COLUMN envios.loja_id IS 'loja';
@@ -156,6 +161,7 @@ CREATE TABLE lojas.pedidos (
 
 -- adicionando comentários nas colunas da tabela
 );
+COMMENT ON TABLE lojas.pedidos IS 'Tabela com dados dos pedidos'
 COMMENT ON COLUMN pedidos.pedido_id IS 'número de identificação do pedido';
 COMMENT ON COLUMN pedidos.status IS 'status do pedido';
 COMMENT ON COLUMN pedidos.loja_id IS 'loja que possui os produtos';
@@ -175,6 +181,7 @@ CREATE TABLE lojas.pedidos_itens (
 
 -- adicionando comentários nas coluna da tabela
 );
+COMMENT ON TABLE lojas.pedidos_itens IS 'Tabela com dados dos itens contidos em um pedido'
 COMMENT ON TABLE pedidos_itens IS 'itens dos pedidos';
 COMMENT ON COLUMN pedidos_itens.produto_id IS 'id dos produtos';
 COMMENT ON COLUMN pedidos_itens.pedido_id IS 'id dos pedidos';
