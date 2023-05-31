@@ -40,7 +40,7 @@ SET search_path TO lojas, '$user', public;
 ALTER USER gabriel SET search_path TO lojas, '$user', public;
 
 -- criando a tabela produtos
-CREATE TABLE lojas.produtos (
+CREATE TABLE produtos (
                 produtoid NUMERIC(38) NOT NULL,
                 nome VARCHAR(255) NOT NULL,
                 preco_unitario NUMERIC(10,2),
@@ -54,7 +54,7 @@ CREATE TABLE lojas.produtos (
 
 -- adicionando comentários nas colunas das tabelas
 );
-COMMENT ON TABLE lojas.produtos IS 'Tabela com dados dos produtos';
+COMMENT ON TABLE produtos IS 'Tabela com dados dos produtos';
 COMMENT ON COLUMN produtos.produtoid IS 'número de identificação do pedido';
 COMMENT ON COLUMN produtos.nome IS 'nome do produto';
 COMMENT ON COLUMN produtos.preco_unitario IS 'preço unitário do produto';
@@ -66,7 +66,7 @@ COMMENT ON COLUMN produtos.imagem_charset IS 'imagem charset';
 COMMENT ON COLUMN produtos.imagem_ultima_atualizacao IS 'imagem da última atualização';
 
 -- criando a tabela lojas
-CREATE TABLE lojas.lojas (
+CREATE TABLE lojas (
                 lojas_id NUMERIC(38) NOT NULL,
                 nome VARCHAR(255) NOT NULL,
                 endereco_web VARCHAR(100),
@@ -82,7 +82,7 @@ CREATE TABLE lojas.lojas (
 
 -- adicionando comentários nas colunas da tabela
 );
-COMMENT ON TABLE lojas.lojas IS 'Tabela com dados sobre as lojas';
+COMMENT ON TABLE lojas IS 'Tabela com dados sobre as lojas';
 COMMENT ON COLUMN lojas.lojas_id IS 'loja';
 COMMENT ON COLUMN lojas.nome IS 'nome da loja';
 COMMENT ON COLUMN lojas.endereco_web IS 'link do site';
@@ -96,7 +96,7 @@ COMMENT ON COLUMN lojas.logo_charset IS 'logo-charset';
 COMMENT ON COLUMN lojas.logo_ultima_atualizacao IS 'logo_ultima_atualizacao';
 
 -- criando a tabela estoques
-CREATE TABLE lojas.estoques (
+CREATE TABLE estoques (
                 estoque_id NUMERIC(38) NOT NULL,
                 produto_id NUMERIC(38) NOT NULL,
                 loja_id NUMERIC(38) NOT NULL,
@@ -105,14 +105,14 @@ CREATE TABLE lojas.estoques (
 
 -- adicionando comentários nas colunas da tabela
 );
-COMMENT ON TABLE lojas.estoques IS 'Tabela com dados sobre estoques';
+COMMENT ON TABLE estoques IS 'Tabela com dados sobre estoques';
 COMMENT ON COLUMN estoques.estoque_id IS 'identificação do produto no estoque';
 COMMENT ON COLUMN estoques.produto_id IS 'número de identificação do produto';
 COMMENT ON COLUMN estoques.loja_id IS 'loja';
 COMMENT ON COLUMN estoques.quantidade IS 'qualidade';
 
 -- criando a tabela clientes
-CREATE TABLE lojas.clientes (
+CREATE TABLE clientes (
                 cliente_id NUMERIC(38) NOT NULL,
                 email VARCHAR(255) NOT NULL,
                 nome VARCHAR(255) NOT NULL,
@@ -123,7 +123,7 @@ CREATE TABLE lojas.clientes (
 
 -- adicionando comentários nas colunas da tabela
 );
-COMMENT ON TABLE lojas.clientes IS 'Tabela com dados dos clientes';
+COMMENT ON TABLE clientes IS 'Tabela com dados dos clientes';
 COMMENT ON COLUMN clientes.cliente_id IS 'Número de identificação do cliente';
 COMMENT ON COLUMN clientes.email IS 'email do cliente';
 COMMENT ON COLUMN clientes.nome IS 'nome do cliente';
@@ -133,7 +133,7 @@ COMMENT ON COLUMN clientes.telefone3 IS 'telefone 3 de contato com o cliente';
 
 
 -- criando a tabela envios 
-CREATE TABLE lojas.envios (
+CREATE TABLE envios (
                 envio_id NUMERIC(38) NOT NULL,
                 cliente_id NUMERIC(38) NOT NULL,
                 loja_id NUMERIC(38) NOT NULL,
@@ -143,7 +143,7 @@ CREATE TABLE lojas.envios (
 
 -- adicionando comentários nas colunas da tabela
 );
-COMMENT ON TABLE lojas.envios IS 'Tabela com dados dos envios';
+COMMENT ON TABLE envios IS 'Tabela com dados dos envios';
 COMMENT ON COLUMN envios.envio_id IS 'número do pedido enviado';
 COMMENT ON COLUMN envios.cliente_id IS 'cliente que recebeu o pedido';
 COMMENT ON COLUMN envios.loja_id IS 'loja';
@@ -151,7 +151,7 @@ COMMENT ON COLUMN envios.enderecoentrega IS 'endereço de entrega do pedido';
 COMMENT ON COLUMN envios.status IS 'situação do pedido';
 
 -- criando a tabela pedidos
-CREATE TABLE lojas.pedidos (
+CREATE TABLE pedidos (
                 pedido_id NUMERIC(38) NOT NULL,
                 status VARCHAR(15) NOT NULL,
                 loja_id NUMERIC(38) NOT NULL,
@@ -161,7 +161,7 @@ CREATE TABLE lojas.pedidos (
 
 -- adicionando comentários nas colunas da tabela
 );
-COMMENT ON TABLE lojas.pedidos IS 'Tabela com dados dos pedidos';
+COMMENT ON TABLE pedidos IS 'Tabela com dados dos pedidos';
 COMMENT ON COLUMN pedidos.pedido_id IS 'número de identificação do pedido';
 COMMENT ON COLUMN pedidos.status IS 'status do pedido';
 COMMENT ON COLUMN pedidos.loja_id IS 'loja que possui os produtos';
@@ -169,7 +169,7 @@ COMMENT ON COLUMN pedidos.cliente_id IS 'referente ao cliente a quem o pedido fo
 COMMENT ON COLUMN pedidos.data_hora IS 'horário e data de entrega dos pedidos';
 
 --criando a tabela pedidos_itens
-CREATE TABLE lojas.pedidos_itens (
+CREATE TABLE pedidos_itens (
                 produto_id NUMERIC(38) NOT NULL,
                 pedido_id NUMERIC(38) NOT NULL,
                 numero_da_linha NUMERIC(38) NOT NULL,
@@ -181,7 +181,7 @@ CREATE TABLE lojas.pedidos_itens (
 
 -- adicionando comentários nas coluna da tabela
 );
-COMMENT ON TABLE lojas.pedidos_itens IS 'Tabela com dados dos itens contidos em um pedido';
+COMMENT ON TABLE pedidos_itens IS 'Tabela com dados dos itens contidos em um pedido';
 COMMENT ON TABLE pedidos_itens IS 'itens dos pedidos';
 COMMENT ON COLUMN pedidos_itens.produto_id IS 'id dos produtos';
 COMMENT ON COLUMN pedidos_itens.pedido_id IS 'id dos pedidos';
@@ -194,27 +194,27 @@ COMMENT ON COLUMN pedidos_itens.envio_id IS 'id do envio';
 
 
 -- Adicionar a constraint na coluna status da tabela pedidos
-ALTER TABLE lojas.pedidos
+ALTER TABLE pedidos
 ADD CONSTRAINT status_do_pedido
 CHECK (status IN ('CANCELADO', 'COMPLETO', 'ABERTO', 'PAGO', 'REEMBOLSADO', 'ENVIADO'));
 
 -- Adicionar a constraint na tabela lojas
-ALTER TABLE lojas.lojas
+ALTER TABLE lojas
 ADD CONSTRAINT endereco_loja
 CHECK ((endereco_web IS NOT NULL AND endereco_fisico IS NULL) OR (endereco_web IS NULL AND endereco_fisico IS NOT NULL));
 
 --Adicionar constraints na tabela produtos
-ALTER TABLE lojas.produtos
+ALTER TABLE produtos
 ADD CONSTRAINT preco_unitario
 CHECK (preco_unitario>0);
 
 -- Adicionar a constraint na coluna status da tabela envios
-ALTER TABLE lojas.envios
+ALTER TABLE envios
 ADD CONSTRAINT status_do_envio
 CHECK (status IN ('CRIADO', 'ENVIADO', 'TRANSITO', 'ENTREGUE'));
 
 
-ALTER TABLE lojas.pedidos_itens ADD CONSTRAINT produtos_pedidos_itens_fk
+ALTER TABLE pedidos_itens ADD CONSTRAINT produtos_pedidos_itens_fk
 FOREIGN KEY (produto_id)
 REFERENCES produtos (produtoid)
 ON DELETE NO ACTION
